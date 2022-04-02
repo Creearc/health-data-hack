@@ -132,7 +132,7 @@ def get_back(path, output_path):
 
 path = '../tissue-segment/tissue-segment/'
 output_path = 'output_objects/'
-#get_objects(path, output_path)
+get_objects(path, output_path)
 
 output_path = 'output_back/'
 get_back(path, output_path)
