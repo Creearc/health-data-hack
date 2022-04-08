@@ -69,8 +69,17 @@ def generate(obj_path, back_path, output_path,
              obj_num=(5, 15), obj_size=(0.7, 1.3), obj_gamma=(0.9, 1.1), obj_rotation=(-5, 5),
              back_num=(20, 40), back_size=(0.9, 1.3), back_gamma=(0.9, 1.1), back_rotation=(-5, 5)):
 
+    images_output_path = '{}/images/'.format(output_path)
+    annotation_output_path = '{}/annotation/'.format(output_path)
+    
     if not os.path.exists(output_path):
         os.makedirs(output_path)
+
+    if not os.path.exists(images_output_path):
+        os.makedirs(images_output_path)
+
+    if not os.path.exists(annotation_output_path):
+        os.makedirs(annotation_output_path)
         
     while len(os.listdir(output_path)) < result_count * 2:
         result = cv2.bitwise_not(np.zeros((result_shape[1], result_shape[0], 3), np.uint8))
@@ -112,8 +121,8 @@ def generate(obj_path, back_path, output_path,
             result_mask = combine_masks(result_mask, obj_img[:,:,3], o_x, o_y)
 
         name = time.time()
-        cv2.imwrite('{}{}.png'.format(output_path, name), result)
-        cv2.imwrite('{}{}_mask.png'.format(output_path, name), result_mask)
+        cv2.imwrite('{}{}.jpg'.format(images_output_path, name), result)
+        cv2.imwrite('{}{}.png'.format(annotation_output_path, name), result_mask)
             
         
     ##    result = cv2.resize(result, (1000, 1000), interpolation = cv2.INTER_AREA)
