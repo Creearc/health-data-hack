@@ -65,7 +65,8 @@ def combine_masks(img1, mask, x, y):
 
 def generate(obj_path, back_path, output_path,
              result_count=1000,
-             result_shape=(4000, 4000),
+             result_shape_start=(4000, 4000),
+             result_shape=(1000, 1000),
              obj_num=(5, 15), obj_size=(0.7, 1.3), obj_gamma=(0.9, 1.1), obj_rotation=(-5, 5),
              back_num=(20, 40), back_size=(0.9, 1.3), back_gamma=(0.9, 1.1), back_rotation=(-5, 5)):
 
@@ -83,7 +84,7 @@ def generate(obj_path, back_path, output_path,
         
     while len(os.listdir(images_output_path)) < result_count:
         result = cv2.bitwise_not(np.zeros((result_shape[1], result_shape[0], 3), np.uint8))
-        result_mask = np.zeros((result_shape[1], result_shape[0]), np.uint8)
+        result_mask = np.zeros((result_shape_start[1], result_shape_start[0]), np.uint8)
 
         ''' Background '''
         for back_count in range(random.randint(back_num[0], back_num[1])):
@@ -120,9 +121,14 @@ def generate(obj_path, back_path, output_path,
             result = combine_imgs(result, obj_img[:,:,:3], obj_img[:,:,3], o_x, o_y)
             result_mask = combine_masks(result_mask, obj_img[:,:,3], o_x, o_y)
 
-        name = time.time()
+        name = str(time.time()).split('.')
+        name = '{}.{}'.format(''.join(name[:-1]), name[-1])
+
+        result = cv2.resize(result, result_shape)
+        result_mask = cv2.resize(result_mask, result_shape)
+        
         cv2.imwrite('{}{}.jpg'.format(images_output_path, name), result)
-        cv2.imwrite('{}{}.png'.format(annotation_output_path, name), result_mask)
+        cv2.imwrite('{}{}_cancer_0.png'.format(annotation_output_path, name), result_mask)
             
         
     ##    result = cv2.resize(result, (1000, 1000), interpolation = cv2.INTER_AREA)
@@ -138,6 +144,6 @@ def generate(obj_path, back_path, output_path,
 
 obj_path = 'output_objects/'
 back_path = 'output_objects/'
-output_path = 'results/dataset_2/'
+output_path = 'results/dataset_1/'
 
-generate(obj_path, back_path, output_path, result_count=200)
+generate(obj_path, back_path, output_path, result_count=2000)
