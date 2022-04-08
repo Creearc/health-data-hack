@@ -131,4 +131,4 @@ obj_path = 'output_objects/'
 back_path = 'output_objects/'
 output_path = 'results/dataset_1/'
 
-generate(obj_path, back_path, output_path, result_count=500)
+generate(obj_path, back_path, output_path, result_count=3000)
