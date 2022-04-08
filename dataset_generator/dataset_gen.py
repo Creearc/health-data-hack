@@ -67,7 +67,7 @@ def generate(obj_path, back_path, output_path,
              result_count=1000,
              result_shape_start=(4000, 4000),
              result_shape=(1000, 1000),
-             obj_num=(5, 15), obj_size=(0.7, 1.3), obj_gamma=(0.9, 1.1), obj_rotation=(-5, 5),
+             obj_num=(1, 1), obj_size=(0.7, 1.3), obj_gamma=(0.9, 1.1), obj_rotation=(-5, 5),
              back_num=(20, 40), back_size=(0.9, 1.3), back_gamma=(0.9, 1.1), back_rotation=(-5, 5)):
 
     images_output_path = '{}/images/'.format(output_path)
@@ -144,6 +144,6 @@ def generate(obj_path, back_path, output_path,
 
 obj_path = 'output_objects/'
 back_path = 'output_objects/'
-output_path = 'results/dataset_2/'
+output_path = 'results/dataset_3/'
 
-generate(obj_path, back_path, output_path, result_count=200)
+generate(obj_path, back_path, output_path, result_count=2000)
