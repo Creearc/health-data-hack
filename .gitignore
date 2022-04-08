@@ -3,3 +3,5 @@ commit_2.0.py
 tissue-segment.zip
 tissue-segment/*
 *.png
+*.pth
+*.zip
