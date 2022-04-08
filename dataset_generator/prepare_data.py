@@ -130,7 +130,7 @@ def get_back(path, output_path):
 ##    cv2.destroyAllWindows()
 
 
-path = '../tissue-segment/tissue-segment/'
+path = '../tissue-segment/'
 output_path = 'output_objects/'
 get_objects(path, output_path)
 
