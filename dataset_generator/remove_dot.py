@@ -1,8 +1,8 @@
 import os
 
-output_path = 'results/dataset_1/'
-images_output_path = '{}/images/'.format(output_path)
-annotation_output_path = '{}/annotation/'.format(output_path)
+output_path = 'results/dataset_2/'
+images_output_path = '{}images/'.format(output_path)
+annotation_output_path = '{}annotation/'.format(output_path)
 
 def foo(path):
     for file in os.listdir(path):
