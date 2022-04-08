@@ -144,6 +144,6 @@ def generate(obj_path, back_path, output_path,
 
 obj_path = 'output_objects/'
 back_path = 'output_objects/'
-output_path = 'results/dataset_3/'
+output_path = 'results/dataset_4/'
 
-generate(obj_path, back_path, output_path, result_count=2000)
+generate(obj_path, back_path, output_path, result_count=200)
