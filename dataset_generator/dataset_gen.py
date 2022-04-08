@@ -81,7 +81,7 @@ def generate(obj_path, back_path, output_path,
     if not os.path.exists(annotation_output_path):
         os.makedirs(annotation_output_path)
         
-    while len(os.listdir(output_path)) < result_count * 2:
+    while len(os.listdir(images_output_path)) <= result_count:
         result = cv2.bitwise_not(np.zeros((result_shape[1], result_shape[0], 3), np.uint8))
         result_mask = np.zeros((result_shape[1], result_shape[0]), np.uint8)
 
@@ -138,6 +138,6 @@ def generate(obj_path, back_path, output_path,
 
 obj_path = 'output_objects/'
 back_path = 'output_objects/'
-output_path = 'results/dataset_1/'
+output_path = 'results/dataset_2/'
 
-generate(obj_path, back_path, output_path, result_count=3000)
+generate(obj_path, back_path, output_path, result_count=200)
