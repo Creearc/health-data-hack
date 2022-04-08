@@ -81,7 +81,7 @@ def generate(obj_path, back_path, output_path,
     if not os.path.exists(annotation_output_path):
         os.makedirs(annotation_output_path)
         
-    while len(os.listdir(images_output_path)) <= result_count:
+    while len(os.listdir(images_output_path)) < result_count:
         result = cv2.bitwise_not(np.zeros((result_shape[1], result_shape[0], 3), np.uint8))
         result_mask = np.zeros((result_shape[1], result_shape[0]), np.uint8)
 
