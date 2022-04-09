@@ -83,7 +83,7 @@ def generate(obj_path, back_path, output_path,
         os.makedirs(annotation_output_path)
         
     while len(os.listdir(images_output_path)) < result_count:
-        result = cv2.bitwise_not(np.zeros((result_shape[1], result_shape[0], 3), np.uint8))
+        result = cv2.bitwise_not(np.zeros((result_shape_start[1], result_shape_start[0], 3), np.uint8))
         result_mask = np.zeros((result_shape_start[1], result_shape_start[0]), np.uint8)
 
         ''' Background '''
@@ -98,8 +98,8 @@ def generate(obj_path, back_path, output_path,
             gamma = random.uniform(back_gamma[0], back_gamma[1])
             back_img = adjust_gamma(back_img, gamma)
 
-            o_x, o_y = random_position((0, result_shape[0]),
-                                       (0, result_shape[1]))
+            o_x, o_y = random_position((0, result_shape_start[0]),
+                                       (0, result_shape_start[1]))
 
             result = combine_imgs(result, back_img[:,:,:3], back_img[:,:,3], o_x, o_y)
 
@@ -115,8 +115,8 @@ def generate(obj_path, back_path, output_path,
             gamma = random.uniform(obj_gamma[0], obj_gamma[1])
             obj_img = adjust_gamma(obj_img, gamma)
 
-            o_x, o_y = random_position((0, result_shape[0]),
-                                       (0, result_shape[1]))
+            o_x, o_y = random_position((0, result_shape_start[0]),
+                                       (0, result_shape_start[1]))
 
             result = combine_imgs(result, obj_img[:,:,:3], obj_img[:,:,3], o_x, o_y)
             result_mask = combine_masks(result_mask, obj_img[:,:,3], o_x, o_y)
