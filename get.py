@@ -16,7 +16,11 @@ def main_thread():
 
   ftp.cwd('yolact-repo/weights')
 
-  for i in ['mecano_431_270000.pth']:
+  for i in ['hdh_6_14000.pth',
+            'hdh_113_227000.pth',
+            'hdh_100_201000.pth',
+            'hdh_74_149000.pth'
+            ]:
     try:
       with open(i, 'wb') as f:
         ftp.retrbinary('RETR ' + i, f.write)
